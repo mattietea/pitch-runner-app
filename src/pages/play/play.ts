@@ -20,6 +20,7 @@ export class PlayPage {
 
   private backgroundSound = new Audio();
   private objectSound = new Audio();
+  private transitionAudio = new Audio();
   private swipeLeftSound = new Audio(FEEDBACK_CONFIG.swipe.left);
   private swipeRightSound = new Audio(FEEDBACK_CONFIG.swipe.right);
   private swipeUpSound = new Audio(FEEDBACK_CONFIG.swipe.up);
@@ -33,7 +34,8 @@ export class PlayPage {
   private isPlaying: boolean = true;
   private scoreInterval: number = 0;
   private score: number = 0;
-  private currentLevel: number = 2;
+  private currentLevel: number = 0;
+
 
   constructor(private _appService: AppService, private _gameService: GameService,private _navCtrl: NavController, private _navParams: NavParams) {
     this.loadGame(this.currentLevel, 6000, 250, true);
@@ -46,31 +48,16 @@ export class PlayPage {
     console.log('Swipe generated: ' + this.currentSwipe + ' Id: ' + this.swipeCount);
     this.loadObjectSound();
     clearTimeout(this.swipeGapTimeout);
-    this.swipeGapTimeout = setTimeout((res) => {
+    this.swipeGapTimeout = setTimeout(() => {
       this.checkSwipe();
     }, _swipeGap);
   }
-
 
   checkSwipe() {
     this.swipeGap = this.swipeGap - this.gapDec;
     console.log('New swipe gap: ' + this.swipeGap);
     if (this.currentSwipe == this.userSwipe) {
-      if(this.swipeCount == 5) {
-        if (this.currentLevel == 3) {
-          this.loadGame(this.currentLevel, 4000, 250);
-        } else {
-          this.currentLevel++;
-          this.loadGame(this.currentLevel, 5000, 250);
-        }
-      } else {
-        this.generateSwipe(this.swipeGap);
-        if (this.currentSwipe == 2) {
-          this.increaseScore(50);
-        } else {
-          this.increaseScore()
-        }
-      }
+      this.checkForLevelUpdate(15);
     } else {
       this.isPlaying = false;
       this.toggleScore(false);
@@ -79,6 +66,29 @@ export class PlayPage {
       this._navCtrl.push(LostPage, {score: this.score})
     }
   }
+
+  checkForLevelUpdate(_swipesToNext: number) {
+    if(this.swipeCount == _swipesToNext && this.currentLevel != 3) {
+      if (this.currentLevel == 2) {
+        this.currentLevel++;
+        this.loadGame(this.currentLevel, 3000, 150, true);
+      } else if (this.currentLevel == 1) {
+        this.currentLevel++;
+        this.loadGame(this.currentLevel, 4000, 300, true);
+      } else if (this.currentLevel == 0)  {
+        this.currentLevel++;
+        this.loadGame(this.currentLevel, 5000, 250, true)
+      }
+    } else {
+      this.generateSwipe(this.swipeGap);
+      if (this.currentSwipe == 2) {
+        this.increaseScore(50);
+      } else {
+        this.increaseScore()
+      }
+    }
+  }
+
 
   increaseScore(_addedScore: number = 10) {
     this.score = this.score + _addedScore;
@@ -97,6 +107,7 @@ export class PlayPage {
   loadObjectSound() {
     let _object = Math.floor(Math.random() * 3);
     this.objectSound.src = this.soundConfig[`${_object}`][`${this.currentSwipe}`];
+    this.objectSound.volume = 1;
     this.objectSound.play();
   }
 
@@ -134,13 +145,9 @@ export class PlayPage {
     this.swipeCount = 0;
     this.isPlaying = true;
     this.soundConfig = this._gameService.loadSound(_gameLevel);
-    this.loadBackgroundSound();
     if (_hasIntro) {
-      this._appService.say(GAME_INTRO);
-      this.swipeGapTimeout = setTimeout(() => {
-        this.generateSwipe(this.swipeGap);
-        this.toggleScore();
-      }, 5000);
+      this.addIntro(_gameLevel);
+      this.toggleScore();
     } else {
       this.swipeGapTimeout = setTimeout(() => {
         this.generateSwipe(this.swipeGap);
@@ -150,9 +157,33 @@ export class PlayPage {
 
   };
 
+  addIntro(_gameLevel: number) {
+    if (_gameLevel == 0) {
+      this.loadBackgroundSound();
+      this._appService.say(GAME_INTRO);
+      this.swipeGapTimeout = setTimeout(() => {
+        this.generateSwipe(this.swipeGap);
+        this.toggleScore();
+      }, 5000);
+    } else {
+      this.transitionAudio.src = this.soundConfig.transition;
+      this.transitionAudio.play();
+      this.backgroundSound.pause();
+      console.log('Transition playing: ' + this.soundConfig.transition);
+        setTimeout(() => {
+        this.loadBackgroundSound();
+        setTimeout(() => {
+          console.log('Game resume: ' + this.swipeGap + ' ' + this.gapDec);
+          this.generateSwipe(this.swipeGap);
+        }, 3000)
+      }, 12000)
+    }
+  }
+
   loadBackgroundSound(_backgroundSound: string = this.soundConfig.background) {
     this.backgroundSound.src = _backgroundSound;
     this.backgroundSound.play();
+    this.backgroundSound.volume = .65;
     this.backgroundSound.addEventListener('timeupdate', () => {
       if (this.backgroundSound.currentTime > 8) {
         this.backgroundSound.currentTime = 0;

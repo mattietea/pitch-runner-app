@@ -31,7 +31,7 @@ import {LostPage} from "../pages/lost/lost";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {mode: 'ios'}),
+    IonicModule.forRoot(MyApp, {mode: 'ios', swipeBackEnabled: false}),
     CloudModule.forRoot(CLOUD_CONFIG)
   ],
   bootstrap: [IonicApp],

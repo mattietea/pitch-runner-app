@@ -6,7 +6,6 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding (swipe)="gestureEvent($event)" >
-  <button (click)="speak()" ion-button >Start</button>
-  <h1>{{ event }}</h1>
+<ion-content padding gesture (onGesture)="gestureEvent($event)">
+  <button (click)="startApp()" *ngIf="!appStarted && !hasBeenHere" ion-button block >Start</button>
 </ion-content>

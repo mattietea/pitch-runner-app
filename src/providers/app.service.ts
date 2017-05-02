@@ -13,8 +13,18 @@ export class AppService {
   private lostVisited: boolean = false;
   private speechRate: number = 0;
 
+
   constructor() {
     responsiveVoice.addEventListener("click", responsiveVoice.clickEvent);
+  }
+
+  getHasVistedHomePage() {
+    return this.homeVisited;
+  }
+
+  startApp() {
+    this.homeVisited = false;
+    this.loadHomePageSpeech();
   }
 
   loadHomePageSpeech() {
@@ -25,6 +35,7 @@ export class AppService {
       this.homeVisited = true;
     }
   }
+
 
   loadHomePageInstructions() {
     this.say(HOME_SAYS.dirs);
@@ -74,14 +85,13 @@ export class AppService {
     this.say(UNRECOGNIZED_SWIPE);
   }
 
-
   // Utility
-  public say(_speech: string, _voice: string = 'UK English Female') {
+  say(_speech: string, _voice: string = 'UK English Female') {
     responsiveVoice.cancel();
     responsiveVoice.speak(_speech, _voice, {rate: `1.${this.speechRate}`});
   }
 
-  public editSpeechRate(_increase: boolean) {
+  editSpeechRate(_increase: boolean) {
     if (_increase && this.speechRate < 5) {
       this.speechRate += 1;
       this.say('Speech rate increased to ' + (this.speechRate * 20) + ' percent');
@@ -93,6 +103,11 @@ export class AppService {
     } else if (!_increase && this.speechRate == 0) {
       this.say(`We can't go any slower! Speech rate at ` + (this.speechRate * 20) + ' percent');
     }
+  }
+
+  voiceIsPlaying() {
+    console.log('Voice is playing: '+ responsiveVoice.isPlaying());
+    return responsiveVoice.isPlaying();
   }
 
 }
