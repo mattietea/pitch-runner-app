@@ -33,7 +33,7 @@ export class PlayPage {
   private isPlaying: boolean = true;
   private scoreInterval: number = 0;
   private score: number = 0;
-  private currentLevel: number = 0;
+  private currentLevel: number = 2;
 
   constructor(private _appService: AppService, private _gameService: GameService,private _navCtrl: NavController, private _navParams: NavParams) {
     this.loadGame(this.currentLevel, 6000, 250, true);
@@ -137,12 +137,12 @@ export class PlayPage {
     this.loadBackgroundSound();
     if (_hasIntro) {
       this._appService.say(GAME_INTRO);
-      this.swipeGapTimeout = setTimeout((res) => {
+      this.swipeGapTimeout = setTimeout(() => {
         this.generateSwipe(this.swipeGap);
         this.toggleScore();
       }, 5000);
     } else {
-      this.swipeGapTimeout = setTimeout((res) => {
+      this.swipeGapTimeout = setTimeout(() => {
         this.generateSwipe(this.swipeGap);
         this.toggleScore();
       }, 3000);
