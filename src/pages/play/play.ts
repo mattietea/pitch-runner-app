@@ -102,7 +102,7 @@ export class PlayPage {
     if (_runScore) {
       this.scoreInterval = setInterval(() => {
         this.score++;
-        if (this.score % 500 == 0 && this.score != 0) {
+        if (this.score % 500 == 0 && this.score != 0 && this.isPlaying) {
           this.readScore();
         }
       }, 100);
