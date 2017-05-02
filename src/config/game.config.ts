@@ -21,7 +21,7 @@ export const TEXAS_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/texas/rightrooster.mp3',
   },
-  transition: `assets/sounds/extra/transition1.mp3`
+  transition: `assets/sounds/extra/new-transition1.mp3`
 };
 
 export const JURASSIC_CONFIG = {
@@ -44,7 +44,7 @@ export const JURASSIC_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/jurassic/rightmonkey.mp3',
   },
-  transition: `assets/sounds/extra/transition2.mp3`
+  transition: `assets/sounds/extra/new-transition2.mp3`
 };
 
 
@@ -68,7 +68,7 @@ export const MANHATTAN_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/manhattan/rightsiren.mp3',
   },
-  transition: `assets/sounds/extra/transition3.mp3`
+  transition: `assets/sounds/extra/new-transition3.mp3`
 };
 
 export const STARWARS_CONFIG = {
