@@ -21,7 +21,7 @@ export const TEXAS_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/texas/rightrooster.mp3',
   },
-  finished: `You've finished the tutorial!`
+  transition: ``
 };
 
 export const JURASSIC_CONFIG = {
@@ -44,7 +44,7 @@ export const JURASSIC_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/jurassic/rightmonkey.mp3',
   },
-  finished: `You've finished the tutorial!`
+  transition: ``
 };
 
 
@@ -68,7 +68,7 @@ export const MANHATTAN_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/manhattan/rightsiren.mp3',
   },
-  finished: `You've finished the tutorial!`
+  transition: ``
 };
 
 export const STARWARS_CONFIG = {
@@ -91,7 +91,7 @@ export const STARWARS_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/starwars/rightswoosh.mp3',
   },
-  finished: `You've finished the tutorial!`
+  transition: `transition`
 };
 
 export const FEEDBACK_CONFIG = {
