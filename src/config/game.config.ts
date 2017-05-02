@@ -80,10 +80,10 @@ export const STARWARS_CONFIG = {
     3: 'assets/sounds/starwars/rightlaser.mp3'
   },
   1: {
-    0: 'assets/sounds/starwars/spaceship.mp3',
-    1: 'assets/sounds/starwars/leftspaceship.mp3',
+    0: 'assets/sounds/starwars/beam.mp3',
+    1: 'assets/sounds/starwars/leftbeam.mp3',
     2: 'assets/sounds/extra/bonus.mp3',
-    3: 'assets/sounds/starwars/rightspaceship.mp3'
+    3: 'assets/sounds/starwars/rightbeam.mp3'
   },
   2: {
     0: 'assets/sounds/starwars/swoosh.mp3',
