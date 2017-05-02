@@ -18,7 +18,6 @@ export class GestureDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.gesture = new Gesture(this.el, {
       recognizers: [
         [Hammer.Swipe, {direction: Hammer.DIRECTION_ALL, drag_min_distance: 1, swipe_velocity: 0.1}],
@@ -41,7 +40,9 @@ export class GestureDirective implements OnInit, OnDestroy {
     this.gesture.on('doubletap', e => {
       this.onGesture.emit({ type: 4});
     });
+
   }
+
 
   ngOnDestroy() {
     this.gesture.destroy();

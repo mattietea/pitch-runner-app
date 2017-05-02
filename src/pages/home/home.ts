@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {NavController, Platform} from 'ionic-angular';
 import {SoundService} from "../../providers/sound.service";
 import {HOME_SAYS} from "../../config/page.config";
@@ -36,15 +36,16 @@ export class HomePage {
   }
 
   gestureEvent(_event: any) {
-    if (_event.type == 0) {
+    console.log(_event);
+    if (_event.type == 0 || _event == 38) {
       this._navCtrl.push(TutorialPage);
-    } else if (_event.type == 1) {
+    } else if (_event.type == 1 || _event == 39) {
       this._navCtrl.push(ScoresPage);
-    } else if (_event.type == 2) {
+    } else if (_event.type == 2 || _event == 40) {
       this._navCtrl.push(PlayPage);
-    } else if (_event.type == 3) {
+    } else if (_event.type == 3 || _event == 37) {
       this._navCtrl.push(SettingsPage)
-    } else if (_event.type == 4) {
+    } else if (_event.type == 4 || _event == 32) {
       this._appService.loadHomePageInstructions();
     }
   }
@@ -52,5 +53,6 @@ export class HomePage {
   speak() {
     this._appService.loadHomePageInstructions()
   }
+
 
 }

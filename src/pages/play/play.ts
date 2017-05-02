@@ -130,15 +130,15 @@ export class PlayPage {
 
   gestureEvent(_event: any) {
     if (this.isPlaying) {
-      if (_event.type == 0) {
+      if (_event.type == 0 || _event == 38) {
         this.userSwipe = 0;
-      } else if (_event.type == 1) {
+      } else if (_event.type == 1 || _event == 39) {
         this.userSwipe = 1;
-      } else if (_event.type == 2) {
+      } else if (_event.type == 2 || _event == 40) {
         this.userSwipe = 2;
-      } else if (_event.type == 3) {
+      } else if (_event.type == 3 || _event == 37) {
         this.userSwipe = 3;
-      } else if (_event.type == 4) {
+      } else if (_event.type == 4 || _event == 32) {
 
       }
       console.log('User Swipe: ' + this.userSwipe);

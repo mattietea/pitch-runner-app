@@ -16,15 +16,15 @@ export class SettingsPage {
   }
 
   gestureEvent(_event: any) {
-    if (_event.type == 0) {
+    if (_event.type == 0 || _event == 38) {
       this._appService.editSpeechRate(true);
-    } else if (_event.type == 1) {
+    } else if (_event.type == 1 || _event == 39) {
       this._navCtrl.push(HomePage);
-    } else if (_event.type == 2) {
+    } else if (_event.type == 2 || _event == 40) {
       this._appService.editSpeechRate(false);
-    } else if (_event.type == 3) {
+    } else if (_event.type == 3 || _event == 37) {
       this._appService.loadUnrecognizedSwipe();
-    } else if (_event.type == 4) {
+    } else if (_event.type == 4 || _event == 32) {
       this._appService.loadSettingsPageInstructions();
     }
   }
