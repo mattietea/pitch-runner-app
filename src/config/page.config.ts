@@ -39,7 +39,8 @@ export const SCORES_SAYS = {
 export const TUTORIAL_SAYS = {
   intro: `Welcome to the tutorial. Pitch runner is an endless 
   running game. Based on the sounds you hear, swipe away 
-  from oncoming objects! Sounds can be in your left ear,  right ear,  or both ears.`,
+  from oncoming objects! Sounds can be in your left ear,  right ear,  or both ears.
+  If you want to exit the tutorial at any time, double tap the screen.`,
   stepOne: `Here are some examples of sounds coming from the right, when 
   you hear these sounds you'll want to dive away from them by swiping left`,
   stepTwo: `Here are some examples of sounds coming from the left, when 

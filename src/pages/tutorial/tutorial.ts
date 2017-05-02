@@ -30,7 +30,7 @@ export class TutorialPage {
     this._appService.say(TUTORIAL_SAYS.intro);
     setTimeout(() => {
       this.loadStepOne();
-    }, 14000);
+    }, 18000);
   }
 
   loadStepOne() {
@@ -111,6 +111,10 @@ export class TutorialPage {
         this._appService.loadUnrecognizedSwipe();
       } else if (_event.type == 4) {
         this._appService.say(TUTORIAL_SAYS.dirs);
+      }
+    } else {
+      if (_event.type == 4) {
+        this._navCtrl.push('Home Page');
       }
     }
 
