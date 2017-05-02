@@ -75,10 +75,10 @@ export class PlayPage {
     if(this.swipeCount == _swipesToNext && this.currentLevel != 3) {
       if (this.currentLevel == 2) {
         this.currentLevel++;
-        this.loadGame(this.currentLevel, 4000, 150, true);
+        this.loadGame(this.currentLevel, 1750, 1, true);
       } else if (this.currentLevel == 1) {
         this.currentLevel++;
-        this.loadGame(this.currentLevel, 4000, 300, true);
+        this.loadGame(this.currentLevel, 4000, 150, true);
       } else if (this.currentLevel == 0)  {
         this.currentLevel++;
         this.loadGame(this.currentLevel, 5000, 200, true)

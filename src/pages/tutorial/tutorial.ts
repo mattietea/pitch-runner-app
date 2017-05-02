@@ -114,7 +114,7 @@ export class TutorialPage {
       }
     } else {
       if (_event.type == 4) {
-        this._navCtrl.push('Home Page');
+        this._navCtrl.push(HomePage);
       }
     }
 
