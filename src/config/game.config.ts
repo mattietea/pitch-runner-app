@@ -21,7 +21,7 @@ export const TEXAS_CONFIG = {
     2: 'assets/sounds/extra/bonus.mp3',
     3: 'assets/sounds/texas/rightrooster.mp3',
   },
-  transition: ``
+  transition: `assets/sounds/texas/intro.mp3`
 };
 
 export const JURASSIC_CONFIG = {

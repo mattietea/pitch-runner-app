@@ -8,4 +8,14 @@
 
 <ion-content padding gesture (onGesture)="gestureEvent($event)">
   <button (click)="startApp()" *ngIf="!appStarted && !hasBeenHere" ion-button block >Start</button>
+
+  <div padding class="logo">
+    <img src="assets/logo.gif"/>
+  </div>
+
+  <div class="logo">
+    <button (click)="resetApp()"  ion-button small >Reset</button>
+  </div>
+
+
 </ion-content>

@@ -15,22 +15,24 @@ declare var responsiveVoice: any;
 })
 export class HomePage {
 
-  private appStarted: boolean = true;
+  private appStarted: boolean = false;
   private hasBeenHere: boolean = false;
 
   constructor(private _platform: Platform, private _appService: AppService, private _navCtrl: NavController, private _soundService: SoundService) {
     _platform.ready().then(() => {
       this.hasBeenHere = _appService.getHasVistedHomePage();
       _appService.loadHomePageSpeech();
-      setTimeout(()=> {
-        this.appStarted = _appService.voiceIsPlaying();
-      }, 1000)
     });
   }
 
   startApp() {
     this._appService.startApp();
     this.appStarted = true;
+  }
+
+  resetApp() {
+    this._appService.resetApp();
+    this.startApp();
   }
 
   gestureEvent(_event: any) {

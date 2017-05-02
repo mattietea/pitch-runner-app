@@ -21,6 +21,14 @@ export class AppService {
     this.loadHomePageSpeech();
   }
 
+  resetApp() {
+  this.homeVisited = false;
+    this.settingsVisited = false;
+    this.scoresVisited = false;
+    this.lostVisited = false;
+    this.speechRate = 0;
+  }
+
   loadHomePageSpeech() {
     if (this.homeVisited) {
       this.say(HOME_SAYS.title);

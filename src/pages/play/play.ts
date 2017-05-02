@@ -63,7 +63,12 @@ export class PlayPage {
       this.toggleScore(false);
       console.log('You lost');
       this.backgroundSound.pause();
-      this._navCtrl.push(LostPage, {score: this.score})
+      this.objectSound.src = FEEDBACK_CONFIG.crash;
+      this.objectSound.play();
+      setTimeout(
+        () => {this._navCtrl.push(LostPage, {score: this.score})}, 4000
+      )
+
     }
   }
 
@@ -162,8 +167,13 @@ export class PlayPage {
       this.loadBackgroundSound();
       this._appService.say(GAME_INTRO);
       this.swipeGapTimeout = setTimeout(() => {
-        this.generateSwipe(this.swipeGap);
+        this.transitionAudio.src = this.soundConfig.transition;
+        this.transitionAudio.play();
         this.toggleScore();
+        this.swipeGapTimeout = setTimeout(() => {
+          this.generateSwipe(this.swipeGap);
+        },4000);
+
       }, 5000);
     } else {
       this.transitionAudio.src = this.soundConfig.transition;
