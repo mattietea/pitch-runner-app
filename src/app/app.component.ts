@@ -7,11 +7,12 @@ import {SettingsPage} from "../pages/settings/settings";
 import {PlayPage} from "../pages/play/play";
 import {LostPage} from "../pages/lost/lost";
 import {ScoresPage} from "../pages/scores/scores";
+import {TutorialPage} from "../pages/tutorial/tutorial";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = TutorialPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

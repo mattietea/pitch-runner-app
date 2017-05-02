@@ -34,7 +34,26 @@ export const SCORES_SAYS = {
   title: `You're on the high score page.`,
   dirs: 'Swipe left to go back to the home page, ' +
   'Swipe down to hear your high score again'
+};
 
+export const TUTORIAL_SAYS = {
+  intro: `Welcome to the tutorial. Pitch runner is an endless 
+  running game. Based on the sounds you hear, swipe away 
+  from oncoming objects! Sounds can be in your left ear,  right ear,  or both ears.`,
+  stepOne: `Here are some examples of sounds coming from the right, when 
+  you hear these sounds you'll want to dive away from them by swiping left`,
+  stepTwo: `Here are some examples of sounds coming from the left, when 
+  you hear these sounds you'll want to dive away from them by swiping right`,
+  stepThree: `Sometimes you'll hear sounds in both ears. When this happens, you'll
+   want to jump over them by swiping up. Here are some examples`,
+  stepFour: `Lastly, there is a bonus sound. When you hear the bonus sound
+  you want to pick it up by swiping down. This will give you extra points!
+  The bonus sound sounds like this.`,
+  finished: `Congrats, you've finished the tutorial! If you want to start playing,
+  swipe up. If you want to hear the tutorial again, swipe right. 
+  If you want to go back to the home screen, swipe down`,
+  dirs: 'Swipe up to start playing, swipe right to hear the tutorial again,' +
+  ' and swipe down to go to the home page'
 };
 
 

@@ -13,15 +13,9 @@ export class AppService {
   private lostVisited: boolean = false;
   private speechRate: number = 0;
 
+  constructor() {}
 
-  constructor() {
-    responsiveVoice.addEventListener("click", responsiveVoice.clickEvent);
-  }
-
-  getHasVistedHomePage() {
-    return this.homeVisited;
-  }
-
+  // Used for iOS
   startApp() {
     this.homeVisited = false;
     this.loadHomePageSpeech();
@@ -35,7 +29,6 @@ export class AppService {
       this.homeVisited = true;
     }
   }
-
 
   loadHomePageInstructions() {
     this.say(HOME_SAYS.dirs);
@@ -86,9 +79,13 @@ export class AppService {
   }
 
   // Utility
-  say(_speech: string, _voice: string = 'UK English Female') {
+  say(_speech: string,  _callback?: any) {
     responsiveVoice.cancel();
-    responsiveVoice.speak(_speech, _voice, {rate: `1.${this.speechRate}`});
+    if (_callback) {
+      responsiveVoice.speak(_speech, 'UK English Male', {rate: `1.${this.speechRate}`, onstart: null, onend: _callback});
+    } else {
+      responsiveVoice.speak(_speech, 'UK English Male', {rate: `1.${this.speechRate}`});
+    }
   }
 
   editSpeechRate(_increase: boolean) {
@@ -109,5 +106,10 @@ export class AppService {
     console.log('Voice is playing: '+ responsiveVoice.isPlaying());
     return responsiveVoice.isPlaying();
   }
+
+  getHasVistedHomePage() {
+    return this.homeVisited;
+  }
+
 
 }
