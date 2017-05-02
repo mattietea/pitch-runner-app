@@ -56,7 +56,7 @@ export class PlayPage {
   checkSwipe() {
     this.swipeGap = this.swipeGap - this.gapDec;
     console.log('New swipe gap: ' + this.swipeGap);
-    if (this.currentSwipe == this.userSwipe) {
+    if (this.currentSwipe == this.userSwipe || this.currentSwipe == 2) {
       this.checkForLevelUpdate(15);
     } else {
       this.isPlaying = false;
@@ -68,7 +68,6 @@ export class PlayPage {
       setTimeout(
         () => {this._navCtrl.push(LostPage, {score: this.score})}, 4000
       )
-
     }
   }
 
@@ -76,7 +75,7 @@ export class PlayPage {
     if(this.swipeCount == _swipesToNext && this.currentLevel != 3) {
       if (this.currentLevel == 2) {
         this.currentLevel++;
-        this.loadGame(this.currentLevel, 3000, 150, true);
+        this.loadGame(this.currentLevel, 4000, 150, true);
       } else if (this.currentLevel == 1) {
         this.currentLevel++;
         this.loadGame(this.currentLevel, 4000, 300, true);
@@ -103,7 +102,10 @@ export class PlayPage {
     if (_runScore) {
       this.scoreInterval = setInterval(() => {
         this.score++;
-      }, 100)
+        if (this.score % 500 == 0 && this.score != 0) {
+          this.readScore();
+        }
+      }, 100);
     } else {
       clearInterval(this.scoreInterval);
     }
@@ -142,6 +144,10 @@ export class PlayPage {
       console.log('User Swipe: ' + this.userSwipe);
       this.loadSwipeSound();
     }
+  }
+
+  readScore() {
+    this._appService.say(`${this.score}`);
   }
 
   loadGame(_gameLevel: number, _swipeGap: number, _gapDec: number, _hasIntro: boolean = false) {
